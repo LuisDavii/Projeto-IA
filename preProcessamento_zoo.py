@@ -5,7 +5,9 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
 from ucimlrepo import fetch_ucirepo
+from pathlib import Path
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -16,6 +18,9 @@ print("--- Passo 1: Investigando a Cena do Crime (os Dados) ---")
 zoo = fetch_ucirepo(id=111)
 
 df_zoo = zoo.data.original.copy()
+PASTA_SAIDA = Path(__file__).resolve().parent / 'dados_zoo'
+PASTA_SAIDA.mkdir(exist_ok=True)
+df_zoo.to_csv(PASTA_SAIDA / 'zoo_original.csv', index=False)
 
 print("\nAs 5 primeiras amostras do dataset Zoo são:")
 print(df_zoo.head())
@@ -25,6 +30,33 @@ df_zoo.info()
 
 print("\nContagem de registros corrompidos (dados faltantes):")
 print(df_zoo.isnull().sum())
+
+coluna_classe = 'type' if 'type' in df_zoo.columns else 'class_type'
+print("\nDistribuição das classes:")
+print(df_zoo[coluna_classe].value_counts().sort_index())
+print("\nProporção das classes (%):")
+print((df_zoo[coluna_classe].value_counts(normalize=True).sort_index() * 100).round(2))
+
+plt.figure(figsize=(8, 4))
+sns.countplot(data=df_zoo, x=coluna_classe, order=sorted(df_zoo[coluna_classe].unique()))
+plt.title('Distribuição das classes do dataset Zoo')
+plt.xlabel('Classe')
+plt.ylabel('Quantidade de animais')
+plt.tight_layout()
+plt.show()
+
+atributos = [col for col in df_zoo.columns if col not in ['animal_name', coluna_classe]]
+fig, axes = plt.subplots(4, 4, figsize=(14, 12))
+for ax, atributo in zip(axes.ravel(), atributos):
+    sns.countplot(data=df_zoo, x=atributo, ax=ax)
+    ax.set_title(atributo)
+    ax.set_xlabel('')
+    ax.set_ylabel('Contagem')
+for ax in axes.ravel()[len(atributos):]:
+    ax.set_visible(False)
+fig.suptitle('Distribuição dos atributos do dataset Zoo', y=1.02)
+plt.tight_layout()
+plt.show()
 
 print("\n--- Passo 2: Consertando as Medidas Faltantes ---")
 
@@ -87,12 +119,21 @@ plt.show()
 print("\nEstatísticas descritivas do dataset Zoo limpo:")
 print(df_zoo_capped.describe())
 
-# Codificação de variáveis categóricas.
-print("\n--- Passo 5: Codificação das Variáveis Categóricas ---")
+# Normalização das colunas numéricas antes da modelagem, excluindo a coluna alvo.
+print("\n--- Passo 5: Normalização das Features Numéricas ---")
+colunas_numericas = df_zoo_capped.select_dtypes(include=[np.number]).columns.tolist()
+colunas_numericas = [col for col in colunas_numericas if col not in ['animal_name', coluna_classe]]
+if colunas_numericas:
+    scaler = StandardScaler()
+    df_zoo_capped[colunas_numericas] = scaler.fit_transform(df_zoo_capped[colunas_numericas])
+    print("Colunas numéricas normalizadas com StandardScaler:")
+    print(colunas_numericas)
+    print(df_zoo_capped[colunas_numericas].head())
+else:
+    print("Nenhuma coluna numérica para normalizar.")
 
-# animal_name identifica cada animal; não é uma característica para o modelo.
-# No ucimlrepo, a coluna da classe se chama 'type' (classes de 1 a 7).
-coluna_classe = 'type' if 'type' in df_zoo_capped.columns else 'class_type'
+# Codificação de variáveis categóricas.
+print("\n--- Passo 6: Codificação das Variáveis Categóricas ---")
 df_zoo_codificado = df_zoo_capped.drop(columns=['animal_name']).copy()
 df_zoo_codificado[coluna_classe] = df_zoo_codificado[coluna_classe].astype('category')
 df_zoo_codificado = pd.get_dummies(
@@ -105,3 +146,5 @@ df_zoo_codificado = pd.get_dummies(
 print("Dataset com a variável de classe codificada:")
 print(df_zoo_codificado.head())
 print(f"\nDimensões após a codificação: {df_zoo_codificado.shape}")
+df_zoo_codificado.to_csv(PASTA_SAIDA / 'zoo_pre_processado.csv', index=False)
+print(f"\nBases original e pré-processada salvas em: {PASTA_SAIDA}")
