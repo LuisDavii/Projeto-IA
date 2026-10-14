@@ -86,3 +86,22 @@ plt.show()
 
 print("\nEstatísticas descritivas do dataset Zoo limpo:")
 print(df_zoo_capped.describe())
+
+# Codificação de variáveis categóricas.
+print("\n--- Passo 5: Codificação das Variáveis Categóricas ---")
+
+# animal_name identifica cada animal; não é uma característica para o modelo.
+# No ucimlrepo, a coluna da classe se chama 'type' (classes de 1 a 7).
+coluna_classe = 'type' if 'type' in df_zoo_capped.columns else 'class_type'
+df_zoo_codificado = df_zoo_capped.drop(columns=['animal_name']).copy()
+df_zoo_codificado[coluna_classe] = df_zoo_codificado[coluna_classe].astype('category')
+df_zoo_codificado = pd.get_dummies(
+    df_zoo_codificado,
+    columns=[coluna_classe],
+    prefix='class_type',
+    dtype=int
+)
+
+print("Dataset com a variável de classe codificada:")
+print(df_zoo_codificado.head())
+print(f"\nDimensões após a codificação: {df_zoo_codificado.shape}")
