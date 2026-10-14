@@ -86,3 +86,21 @@ plt.show()
 
 print("\nEstatísticas descritivas do dataset Zoo limpo:")
 print(df_zoo_capped.describe())
+
+# Codificação de variáveis categóricas.
+print("\n--- Passo 5: Codificação das Variáveis Categóricas ---")
+
+# animal_name identifica cada animal; não é uma característica para o modelo.
+# class_type representa classes sem ordem numérica, então usamos One-Hot Encoding.
+df_zoo_codificado = df_zoo_capped.drop(columns=['animal_name']).copy()
+df_zoo_codificado['class_type'] = df_zoo_codificado['class_type'].astype('category')
+df_zoo_codificado = pd.get_dummies(
+    df_zoo_codificado,
+    columns=['class_type'],
+    prefix='class_type',
+    dtype=int
+)
+
+print("Dataset com a variável de classe codificada:")
+print(df_zoo_codificado.head())
+print(f"\nDimensões após a codificação: {df_zoo_codificado.shape}")
