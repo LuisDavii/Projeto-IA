@@ -26,6 +26,7 @@ from sklearn.neural_network import MLPClassifier
 
 from src.preprocess import (
     PROJECT_ROOT,
+    RESULTS_DIR,
     build_preprocessor,
     load_processed_zoo,
     preprocess_zoo,
@@ -36,6 +37,8 @@ sns.set_style('whitegrid')
 # --- Parte 1: Carregamento da base limpa e definição de diretórios ---
 PASTA_PROJETO = PROJECT_ROOT
 PASTA_RESULTADOS = PASTA_PROJETO / 'resultados_zoo'
+PASTA_TABELAS = RESULTS_DIR / 'tables'
+PASTA_TABELAS.mkdir(parents=True, exist_ok=True)
 PASTA_RESULTADOS.mkdir(exist_ok=True)
 
 
@@ -88,6 +91,7 @@ def exibir_descricao_dataset(df_orig, cols_atributos, col_classe):
     })
     print(df_dist.to_string(index=False))
     df_dist.to_csv(PASTA_RESULTADOS / 'descricao_classes_zoo.csv', index=False)
+    df_dist.to_csv(PASTA_TABELAS / 'descricao_classes_zoo.csv', index=False)
     return df_dist
 
 
@@ -198,10 +202,13 @@ def executar_experimento_gridsearch(X, y, skf, scale=True):
         for idx, params in enumerate(res['params']):
             eh_melhor = (idx == melhor_idx)
             registros_combinacoes.append({
+                'Dataset': 'Zoo',
                 'Algoritmo': nome_alg,
                 'Combinação': f'Comb. {idx + 1}',
                 'Parâmetros': str(params),
                 'Melhor_Combinação': 'Sim' if eh_melhor else 'Não',
+                'Tempo_Treino_Média_Segundos': res['mean_fit_time'][idx],
+                'Tempo_Treino_DP_Segundos': res['std_fit_time'][idx],
                 'Acurácia_Média': res['mean_test_acuracia'][idx],
                 'Acurácia_DP': res['std_test_acuracia'][idx],
                 'Precisão_Macro_Média': res['mean_test_precisao_macro'][idx],
@@ -222,6 +229,7 @@ def executar_experimento_gridsearch(X, y, skf, scale=True):
         metricas_fold_alg = []
         for fold in range(skf.n_splits):
             linha_fold = {
+                'Dataset': 'Zoo',
                 'Algoritmo': nome_alg,
                 'Melhor_Parâmetro': str(res['params'][melhor_idx]),
                 'Fold': f'Fold {fold + 1}',
@@ -280,6 +288,7 @@ def comparar_impacto_preprocessamento(X, y, melhores_modelos, skf):
                 f1s_w.append(f1_score(y_true, y_pred, average='weighted', zero_division=0))
 
             registros_impacto.append({
+                'Dataset': 'Zoo',
                 'Algoritmo': nome_alg,
                 'Base': nome_base,
                 'Acurácia_Média': np.mean(accs),
@@ -300,12 +309,15 @@ def comparar_impacto_preprocessamento(X, y, melhores_modelos, skf):
 # --- Parte 6: Geração e salvamento das tabelas de resultados ---
 def salvar_e_exibir_tabelas(df_combinacoes, df_folds, df_impacto):
     # Salva os CSVs completos e gera a tabela resumo com Média ± Desvio Padrão para o artigo SBC
-    df_combinacoes.to_csv(PASTA_RESULTADOS / 'resultados_gridsearch_todas_combinacoes.csv', index=False)
-    df_folds.to_csv(PASTA_RESULTADOS / 'resultados_por_fold_melhores_modelos.csv', index=False)
-    df_impacto.to_csv(PASTA_RESULTADOS / 'comparacao_impacto_preprocessamento.csv', index=False)
+    tabelas = {
+        'resultados_gridsearch_todas_combinacoes.csv': df_combinacoes,
+        'resultados_por_fold_melhores_modelos.csv': df_folds,
+        'comparacao_impacto_preprocessamento.csv': df_impacto,
+    }
 
     df_melhores = df_combinacoes[df_combinacoes['Melhor_Combinação'] == 'Sim'].copy()
     df_resumo = pd.DataFrame({
+        'Dataset': df_melhores['Dataset'],
         'Algoritmo': df_melhores['Algoritmo'],
         'Melhor Configuração': df_melhores['Parâmetros'],
         'Acurácia (Média ± DP)': df_melhores.apply(
@@ -324,7 +336,10 @@ def salvar_e_exibir_tabelas(df_combinacoes, df_folds, df_impacto):
             lambda r: f"{r['F1_Weighted_Média']*100:.2f}% ± {r['F1_Weighted_DP']*100:.2f}%", axis=1
         ),
     })
-    df_resumo.to_csv(PASTA_RESULTADOS / 'resumo_comparativo_algoritmos.csv', index=False)
+    tabelas['resumo_comparativo_algoritmos.csv'] = df_resumo
+    for pasta in (PASTA_RESULTADOS, PASTA_TABELAS):
+        for nome_arquivo, tabela in tabelas.items():
+            tabela.to_csv(pasta / nome_arquivo, index=False)
 
     print("\n" + "=" * 75)
     print("DESEMPENHO DE TODAS AS COMBINAÇÕES DE PARÂMETROS (10-FOLD CV ESTRATIFICADO)")
@@ -449,9 +464,27 @@ def gerar_graficos(df_combinacoes, df_folds, df_impacto, X_prep, y_prep, melhore
     # 5. Matrizes de confusão acumuladas nos 10 folds para todos os algoritmos
     fig, axes = plt.subplots(2, 3, figsize=(15, 9))
     classes_ordenadas = sorted(y_prep.unique())
+    melhor_algoritmo = (
+        df_combinacoes[df_combinacoes['Melhor_Combinação'] == 'Sim']
+        .sort_values('F1_Macro_Média', ascending=False)
+        .iloc[0]['Algoritmo']
+    )
+    registros_matriz_melhor_modelo = []
     for ax, (nome_alg, modelo) in zip(axes.ravel(), melhores_modelos.items()):
         y_pred_cv = cross_val_predict(modelo, X_prep, y_prep, cv=skf)
         cm = confusion_matrix(y_prep, y_pred_cv, labels=classes_ordenadas)
+        if nome_alg == melhor_algoritmo:
+            registros_matriz_melhor_modelo.extend(
+                {
+                    'Dataset': 'Zoo',
+                    'Melhor_Algoritmo': melhor_algoritmo,
+                    'Classe_Real': classe_real,
+                    'Classe_Predita': classe_predita,
+                    'Contagem': int(cm[i, j]),
+                }
+                for i, classe_real in enumerate(classes_ordenadas)
+                for j, classe_predita in enumerate(classes_ordenadas)
+            )
         sns.heatmap(
             cm,
             annot=True,
@@ -471,6 +504,9 @@ def gerar_graficos(df_combinacoes, df_folds, df_impacto, X_prep, y_prep, melhore
     plt.tight_layout()
     plt.savefig(PASTA_RESULTADOS / 'matrizes_confusao_algoritmos.png', dpi=300, bbox_inches='tight')
     plt.close()
+    pd.DataFrame(registros_matriz_melhor_modelo).to_csv(
+        PASTA_TABELAS / 'matriz_confusao_oof.csv', index=False
+    )
 
 
 # --- Parte 8: Fluxo principal de execução ---

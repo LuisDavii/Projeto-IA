@@ -1,7 +1,7 @@
-Algoritmo,Melhor Configuração,Acurácia (Média ± DP),Precisão Macro (Média ± DP),Recall Macro (Média ± DP),F1-Score Macro (Média ± DP),F1-Score Weighted (Média ± DP)
-Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",95.00% ± 6.71%,85.83% ± 18.28%,88.33% ± 15.00%,86.67% ± 17.07%,94.00% ± 8.54%
-KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",96.00% ± 4.90%,89.09% ± 13.62%,90.48% ± 12.55%,89.59% ± 13.18%,95.27% ± 5.91%
-Naive Bayes,{'classifier__var_smoothing': 0.01},94.00% ± 6.63%,85.98% ± 14.48%,86.31% ± 15.31%,85.85% ± 15.08%,93.56% ± 6.70%
-Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",96.00% ± 4.90%,88.61% ± 14.30%,90.00% ± 13.33%,89.11% ± 13.89%,95.27% ± 5.91%
-SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",97.00% ± 4.58%,90.83% ± 14.17%,91.67% ± 13.44%,91.11% ± 13.88%,96.67% ± 5.16%
-MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",97.00% ± 4.58%,91.94% ± 12.57%,93.33% ± 11.06%,92.44% ± 11.98%,96.27% ± 5.78%
+Dataset,Algoritmo,Melhor Configuração,Acurácia (Média ± DP),Precisão Macro (Média ± DP),Recall Macro (Média ± DP),F1-Score Macro (Média ± DP),F1-Score Weighted (Média ± DP)
+Zoo,Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",95.00% ± 6.71%,85.83% ± 18.28%,88.33% ± 15.00%,86.67% ± 17.07%,94.00% ± 8.54%
+Zoo,KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",96.00% ± 4.90%,89.09% ± 13.62%,90.48% ± 12.55%,89.59% ± 13.18%,95.27% ± 5.91%
+Zoo,Naive Bayes,{'classifier__var_smoothing': 0.01},94.00% ± 6.63%,85.98% ± 14.48%,86.31% ± 15.31%,85.85% ± 15.08%,93.56% ± 6.70%
+Zoo,Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",96.00% ± 4.90%,88.61% ± 14.30%,90.00% ± 13.33%,89.11% ± 13.89%,95.27% ± 5.91%
+Zoo,SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",97.00% ± 4.58%,90.83% ± 14.17%,91.67% ± 13.44%,91.11% ± 13.88%,96.67% ± 5.16%
+Zoo,MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",97.00% ± 4.58%,91.94% ± 12.57%,93.33% ± 11.06%,92.44% ± 11.98%,96.27% ± 5.78%

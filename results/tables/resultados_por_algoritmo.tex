@@ -1,0 +1,22 @@
+\begin{longtable}{llllll}
+\toprule
+Dataset & Algoritmo & Parâmetros & Acurácia (média ± DP, \%) & F1-macro (média ± DP, \%) & F1-weighted (média ± DP, \%) \\
+\midrule
+\endfirsthead
+\toprule
+Dataset & Algoritmo & Parâmetros & Acurácia (média ± DP, \%) & F1-macro (média ± DP, \%) & F1-weighted (média ± DP, \%) \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{Continued on next page} \\
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+Zoo & Árvore de Decisão & criterion='entropy', max\_depth=None, min\_samples\_split=2 & 95.00 ± 6.71 & 86.67 ± 17.07 & 94.00 ± 8.54 \\
+Zoo & KNN & metric='manhattan', n\_neighbors=5, weights='distance' & 96.00 ± 4.90 & 89.59 ± 13.18 & 95.27 ± 5.91 \\
+Zoo & Naive Bayes & var\_smoothing=0.01 & 94.00 ± 6.63 & 85.85 ± 15.08 & 93.56 ± 6.70 \\
+Zoo & Regressão Logística & C=1.0, solver='lbfgs' & 96.00 ± 4.90 & 89.11 ± 13.89 & 95.27 ± 5.91 \\
+Zoo & SVM & C=0.5, gamma='scale', kernel='linear' & 97.00 ± 4.58 & 91.11 ± 13.88 & 96.67 ± 5.16 \\
+Zoo & MLP & activation='relu', alpha=0.001, hidden\_layer\_sizes=(100,) & 97.00 ± 4.58 & 92.44 ± 11.98 & 96.27 ± 5.78 \\
+\end{longtable}

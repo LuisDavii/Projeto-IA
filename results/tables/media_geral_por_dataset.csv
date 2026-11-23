@@ -1,0 +1,2 @@
+Dataset,N_Algoritmos,"Acurácia média entre algoritmos (média ± DP, %)","F1-macro médio entre algoritmos (média ± DP, %)"
+Zoo,6,95.83 ± 1.07,89.13 ± 2.31
