@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import warnings
-from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -10,6 +8,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.model_selection import StratifiedKFold, GridSearchCV, cross_val_predict
+from sklearn.pipeline import Pipeline
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -25,45 +24,29 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
-# Silencia avisos de convergência ou classes pequenas durante a validação cruzada
-warnings.filterwarnings('ignore')
+from src.preprocess import (
+    PROJECT_ROOT,
+    build_preprocessor,
+    load_processed_zoo,
+    preprocess_zoo,
+)
+
 sns.set_style('whitegrid')
 
-# --- Parte 1: Definição de diretórios e carregamento das bases original e pré-processada ---
-PASTA_PROJETO = Path(__file__).resolve().parent
-PASTA_DADOS = PASTA_PROJETO / 'dados_zoo'
+# --- Parte 1: Carregamento da base limpa e definição de diretórios ---
+PASTA_PROJETO = PROJECT_ROOT
 PASTA_RESULTADOS = PASTA_PROJETO / 'resultados_zoo'
 PASTA_RESULTADOS.mkdir(exist_ok=True)
 
-ARQUIVO_ORIGINAL = PASTA_DADOS / 'zoo_original.csv'
-ARQUIVO_PREPROCESSADO = PASTA_DADOS / 'zoo_pre_processado.csv'
-
 
 def carregar_bases():
-    # Carrega os CSVs original e pré-processado e separa atributos (X) e classe alvo (y)
-    df_orig = pd.read_csv(ARQUIVO_ORIGINAL)
-    df_prep = pd.read_csv(ARQUIVO_PREPROCESSADO)
-
+    # Recreate the clean CSV from versioned raw data; it contains no fitted scaling.
+    preprocess_zoo()
+    X, y = load_processed_zoo()
+    df_orig = pd.read_csv(PASTA_PROJETO / 'data' / 'raw' / 'zoo.csv')
     col_classe = 'type' if 'type' in df_orig.columns else 'class_type'
-    cols_atributos = [c for c in df_orig.columns if c not in ('animal_name', col_classe)]
-
-    X_orig = df_orig[cols_atributos].copy()
-    y_orig = df_orig[col_classe].astype(int).copy()
-
-    cols_onehot_classe = [c for c in df_prep.columns if c.startswith('class_type_')]
-    if cols_onehot_classe:
-        X_prep = df_prep.drop(columns=cols_onehot_classe).copy()
-        y_prep = (
-            df_prep[cols_onehot_classe]
-            .idxmax(axis=1)
-            .str.replace('class_type_', '', regex=False)
-            .astype(int)
-        )
-    else:
-        X_prep = df_prep[cols_atributos].copy()
-        y_prep = df_prep[col_classe].astype(int).copy()
-
-    return df_orig, X_orig, y_orig, X_prep, y_prep, cols_atributos, col_classe
+    cols_atributos = X.columns.tolist()
+    return df_orig, X, y, X.copy(), y.copy(), cols_atributos, col_classe
 
 
 # --- Parte 2: Descrição estatística do dataset exigida nas instruções ---
@@ -170,7 +153,7 @@ def obter_algoritmos_e_grades():
 
 
 # --- Parte 4: Execução do GridSearch com 10-fold Cross-Validation Estratificado ---
-def executar_experimento_gridsearch(X, y, skf):
+def executar_experimento_gridsearch(X, y, skf, scale=True):
     # Define as métricas coletadas por fold e executa o GridSearchCV para todos os algoritmos
     scorers = {
         'acuracia': make_scorer(accuracy_score),
@@ -188,9 +171,19 @@ def executar_experimento_gridsearch(X, y, skf):
     melhores_modelos = {}
 
     for nome_alg, config in algoritmos.items():
+        estimator = Pipeline(
+            [
+                ('preprocess', build_preprocessor(X, scale=scale)),
+                ('classifier', config['estimador']),
+            ]
+        )
+        param_grid = [
+            {f'classifier__{key}': values for key, values in combination.items()}
+            for combination in config['grade']
+        ]
         grid = GridSearchCV(
-            estimator=config['estimador'],
-            param_grid=config['grade'],
+            estimator=estimator,
+            param_grid=param_grid,
             cv=skf,
             scoring=scorers,
             refit='acuracia',
@@ -260,22 +253,25 @@ def executar_experimento_gridsearch(X, y, skf):
 
 
 # --- Parte 5: Avaliação comparativa do impacto do pré-processamento (Base Original vs. Pré-processada) ---
-def comparar_impacto_preprocessamento(X_orig, y_orig, X_prep, y_prep, melhores_modelos, skf):
-    # Avalia os melhores modelos na base original (sem tratamento) e na base pré-processada nos mesmos 10 folds
+def comparar_impacto_preprocessamento(X, y, melhores_modelos, skf):
+    # Keep each selected classifier configuration fixed while toggling only scaling.
     from sklearn.base import clone
 
     registros_impacto = []
     for nome_alg, modelo_base in melhores_modelos.items():
-        for nome_base, X_atual, y_atual in [
-            ('Original (Sem Tratamento)', X_orig, y_orig),
-            ('Pré-processada (Capping + StandardScaler)', X_prep, y_prep),
+        for nome_base, scale in [
+            ('Com StandardScaler', True),
+            ('Sem StandardScaler', False),
         ]:
+            modelo_comparacao = clone(modelo_base).set_params(
+                preprocess=build_preprocessor(X, scale=scale)
+            )
             accs, precs_m, recs_m, f1s_m, f1s_w = [], [], [], [], []
-            for train_idx, test_idx in skf.split(X_atual, y_atual):
-                modelo = clone(modelo_base)
-                modelo.fit(X_atual.iloc[train_idx], y_atual.iloc[train_idx])
-                y_pred = modelo.predict(X_atual.iloc[test_idx])
-                y_true = y_atual.iloc[test_idx]
+            for train_idx, test_idx in skf.split(X, y):
+                modelo = clone(modelo_comparacao)
+                modelo.fit(X.iloc[train_idx], y.iloc[train_idx])
+                y_pred = modelo.predict(X.iloc[test_idx])
+                y_true = y.iloc[test_idx]
 
                 accs.append(accuracy_score(y_true, y_pred))
                 precs_m.append(precision_score(y_true, y_pred, average='macro', zero_division=0))
@@ -441,7 +437,7 @@ def gerar_graficos(df_combinacoes, df_folds, df_impacto, X_prep, y_prep, melhore
         palette=['#e07a5f', '#3d405b'],
     )
     plt.ylim(60, 103)
-    plt.title('Impacto do Pré-processamento na Acurácia Média (10-Fold CV Estratificado)')
+    plt.title('Impacto do StandardScaler na Acurácia Média (10-Fold CV Estratificado)')
     plt.ylabel('Acurácia Média (%)')
     plt.xlabel('Algoritmo')
     plt.xticks(rotation=15)
@@ -480,12 +476,12 @@ def gerar_graficos(df_combinacoes, df_folds, df_impacto, X_prep, y_prep, melhore
 # --- Parte 8: Fluxo principal de execução ---
 def main():
     # Orquestra carregamento, descrição do dataset, validação cruzada 10-fold, tabelas e gráficos
-    df_orig, X_orig, y_orig, X_prep, y_prep, cols_atributos, col_classe = carregar_bases()
+    df_orig, _, _, X_prep, y_prep, cols_atributos, col_classe = carregar_bases()
     exibir_descricao_dataset(df_orig, cols_atributos, col_classe)
 
     skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
     df_combinacoes, df_folds, melhores_modelos = executar_experimento_gridsearch(X_prep, y_prep, skf)
-    df_impacto = comparar_impacto_preprocessamento(X_orig, y_orig, X_prep, y_prep, melhores_modelos, skf)
+    df_impacto = comparar_impacto_preprocessamento(X_prep, y_prep, melhores_modelos, skf)
 
     salvar_e_exibir_tabelas(df_combinacoes, df_folds, df_impacto)
     gerar_graficos(df_combinacoes, df_folds, df_impacto, X_prep, y_prep, melhores_modelos, skf)

@@ -1,73 +1,73 @@
 Algoritmo,Melhor_Parâmetro,Fold,Acurácia,Precisão_Macro,Recall_Macro,F1_Macro,Precisão_Weighted,Recall_Weighted,F1_Weighted
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 8,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 9,0.8,0.5,0.6666666666666666,0.5555555555555555,0.7,0.8,0.7333333333333334
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Média,0.95,0.8583333333333332,0.8833333333333332,0.8666666666666666,0.9349999999999999,0.95,0.9399999999999998
-Árvore de Decisão,"{'criterion': 'entropy', 'max_depth': None, 'min_samples_split': 2}",Desvio Padrão,0.06708203932499368,0.18276426832884424,0.15000000000000002,0.17069212773041353,0.09500000000000001,0.06708203932499368,0.08537498983243795
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 3,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Fold 10,0.9,0.7142857142857143,0.7142857142857143,0.7142857142857143,0.9,0.9,0.9
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Média,0.96,0.8908730158730158,0.9047619047619048,0.8958730158730157,0.9483333333333333,0.96,0.9526666666666668
-KNN,"{'metric': 'manhattan', 'n_neighbors': 5, 'weights': 'distance'}",Desvio Padrão,0.04898979485566354,0.13621288249472144,0.12553739358537205,0.13179612740437646,0.06601767440112788,0.04898979485566354,0.05913825608972022
-Naive Bayes,{'var_smoothing': 0.01},Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Naive Bayes,{'var_smoothing': 0.01},Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Naive Bayes,{'var_smoothing': 0.01},Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-Naive Bayes,{'var_smoothing': 0.01},Fold 4,0.8,0.6666666666666666,0.5833333333333334,0.611111111111111,0.9,0.8,0.8333333333333333
-Naive Bayes,{'var_smoothing': 0.01},Fold 5,0.9,0.7142857142857143,0.7142857142857143,0.7142857142857143,0.9,0.9,0.9
-Naive Bayes,{'var_smoothing': 0.01},Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Naive Bayes,{'var_smoothing': 0.01},Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Naive Bayes,{'var_smoothing': 0.01},Fold 8,0.9,0.7999999999999999,0.8333333333333334,0.8148148148148149,0.82,0.9,0.8555555555555555
-Naive Bayes,{'var_smoothing': 0.01},Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
-Naive Bayes,{'var_smoothing': 0.01},Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Naive Bayes,{'var_smoothing': 0.01},Média,0.9400000000000001,0.8597619047619048,0.8630952380952379,0.8584656084656086,0.9369999999999999,0.9400000000000001,0.9355555555555556
-Naive Bayes,{'var_smoothing': 0.01},Desvio Padrão,0.06633249580710798,0.144805953511365,0.1531278199795866,0.1507762451664452,0.06723838189605696,0.06633249580710798,0.0669991708074726
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777778,0.85,0.9,0.8666666666666666
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Média,0.96,0.8861111111111111,0.9,0.8911111111111112,0.9483333333333333,0.96,0.9526666666666668
-Regressão Logística,"{'C': 1.0, 'solver': 'lbfgs'}",Desvio Padrão,0.04898979485566355,0.14296788036064192,0.13333333333333336,0.13893776917636078,0.06601767440112788,0.04898979485566355,0.059138256089720245
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 8,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Média,0.97,0.9083333333333332,0.9166666666666666,0.9111111111111111,0.9650000000000001,0.97,0.9666666666666666
-SVM,"{'C': 0.5, 'gamma': 'scale', 'kernel': 'linear'}",Desvio Padrão,0.045825756949558386,0.1416666666666667,0.13437096247164249,0.1387777332977422,0.05499999999999999,0.045825756949558386,0.0516397779494322
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 3,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Média,0.97,0.9194444444444445,0.9333333333333333,0.9244444444444444,0.9583333333333333,0.97,0.9626666666666667
-MLP,"{'activation': 'relu', 'alpha': 0.001, 'hidden_layer_sizes': (100,)}",Desvio Padrão,0.045825756949558386,0.12573855886395863,0.11055415967851334,0.11975283186939985,0.0655108133567785,0.045825756949558386,0.05782732917920382
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 8,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 9,0.8,0.5,0.6666666666666666,0.5555555555555555,0.7,0.8,0.7333333333333334
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Média,0.95,0.8583333333333332,0.8833333333333332,0.8666666666666666,0.9349999999999999,0.95,0.9399999999999998
+Árvore de Decisão,"{'classifier__criterion': 'entropy', 'classifier__max_depth': None, 'classifier__min_samples_split': 2}",Desvio Padrão,0.06708203932499368,0.18276426832884424,0.15000000000000002,0.17069212773041353,0.09500000000000001,0.06708203932499368,0.08537498983243795
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 3,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Fold 10,0.9,0.7142857142857143,0.7142857142857143,0.7142857142857143,0.9,0.9,0.9
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Média,0.96,0.8908730158730158,0.9047619047619048,0.8958730158730157,0.9483333333333333,0.96,0.9526666666666668
+KNN,"{'classifier__metric': 'manhattan', 'classifier__n_neighbors': 5, 'classifier__weights': 'distance'}",Desvio Padrão,0.04898979485566354,0.13621288249472144,0.12553739358537205,0.13179612740437646,0.06601767440112788,0.04898979485566354,0.05913825608972022
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 4,0.8,0.6666666666666666,0.5833333333333334,0.611111111111111,0.9,0.8,0.8333333333333333
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 5,0.9,0.7142857142857143,0.7142857142857143,0.7142857142857143,0.9,0.9,0.9
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 8,0.9,0.7999999999999999,0.8333333333333334,0.8148148148148149,0.82,0.9,0.8555555555555555
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+Naive Bayes,{'classifier__var_smoothing': 0.01},Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Naive Bayes,{'classifier__var_smoothing': 0.01},Média,0.9400000000000001,0.8597619047619048,0.8630952380952379,0.8584656084656086,0.9369999999999999,0.9400000000000001,0.9355555555555556
+Naive Bayes,{'classifier__var_smoothing': 0.01},Desvio Padrão,0.06633249580710798,0.144805953511365,0.1531278199795866,0.1507762451664452,0.06723838189605696,0.06633249580710798,0.0669991708074726
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Média,0.96,0.8861111111111111,0.9,0.8911111111111112,0.9483333333333333,0.96,0.9526666666666668
+Regressão Logística,"{'classifier__C': 1.0, 'classifier__solver': 'lbfgs'}",Desvio Padrão,0.04898979485566355,0.14296788036064192,0.13333333333333336,0.1389377691763608,0.06601767440112788,0.04898979485566355,0.05913825608972022
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 3,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 8,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Média,0.97,0.9083333333333332,0.9166666666666666,0.9111111111111111,0.9650000000000001,0.97,0.9666666666666666
+SVM,"{'classifier__C': 0.5, 'classifier__gamma': 'scale', 'classifier__kernel': 'linear'}",Desvio Padrão,0.045825756949558386,0.1416666666666667,0.13437096247164249,0.1387777332977422,0.05499999999999999,0.045825756949558386,0.0516397779494322
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 1,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 2,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 3,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 4,0.9,0.6666666666666666,0.6666666666666666,0.6666666666666666,0.9,0.9,0.9
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 5,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 6,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 7,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 8,0.9,0.7777777777777777,0.8333333333333334,0.7999999999999999,0.8333333333333333,0.9,0.86
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 9,0.9,0.75,0.8333333333333334,0.7777777777777777,0.85,0.9,0.8666666666666668
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Fold 10,1.0,1.0,1.0,1.0,1.0,1.0,1.0
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Média,0.97,0.9194444444444445,0.9333333333333333,0.9244444444444444,0.9583333333333333,0.97,0.9626666666666667
+MLP,"{'classifier__activation': 'relu', 'classifier__alpha': 0.001, 'classifier__hidden_layer_sizes': (100,)}",Desvio Padrão,0.045825756949558386,0.12573855886395863,0.11055415967851334,0.11975283186939985,0.0655108133567785,0.045825756949558386,0.05782732917920382
