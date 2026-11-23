@@ -1,0 +1,2 @@
+Dataset,Fonte_URL,N_Exemplos,N_Exemplos_Processados,N_Atributos_Antes,N_Atributos_Depois,N_Classes,Classe_Majoritária,N_Exemplos_Classe_Majoritária,Proporção_Majoritária_pct,Razão_Maioria_Minoria,Nível_Desbalanceamento
+Zoo,https://archive.ics.uci.edu/dataset/111/zoo,101,101,17,16,7,1,41,40.59,10.25,Alto
